@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React, {useState} from "react";
+import { createPortal } from "react-dom";
+import LoadPage from "./Pages/LoadPage/LoadPage";
+import MainContent from "./Pages/Main/MainContent";
+import "./App.css";
+console.log('workings')
 function App() {
+  const [isLoadPageOpen, setLoadPageOpen] = useState<boolean>(true);
+  function closeLoadPage() { 
+    setLoadPageOpen(false);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      
+      <MainContent />
+      {isLoadPageOpen && createPortal(<LoadPage closeLoadPage={closeLoadPage} />, document.body)}
+    </>
+  )
 }
 
 export default App;
