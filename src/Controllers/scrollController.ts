@@ -153,8 +153,7 @@ function setShapePosition({
 	shape.position.x = x;
 	shape.position.y = y;
 }
-// console.log('work')
-// console.log('work')
+
 function calculateShapePositionDuringScroling({
 	endPositionY,
 	startPositionY,

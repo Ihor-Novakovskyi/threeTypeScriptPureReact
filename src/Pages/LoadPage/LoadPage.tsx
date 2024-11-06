@@ -22,17 +22,18 @@ const Torus = {
 
 export default function LoadPage({ closeLoadPage }: LoadPageInterface) {
 	const ref = useRef(null);
-	const { current: canvas } = ref;
-	const isCanvasCreated = canvas !== null;
+	
 	useEffect(() => {
-		isCanvasCreated
+		const { current: canvas } = ref;
+	const isCanvasCreatedInDOM = canvas !== null;
+		isCanvasCreatedInDOM
 			? createElementForLoadPage({
 					canvas,
 					geometries: [Cube, Cylinder, Torus] as FiguresLoadContainer,
 					closeLoadPage,
 			  })
 			: void 0;
-	}, [canvas]);
+	}, []);
 	return (
 		<div className="load-page">
 			<canvas className="load-animation" ref={ref}></canvas>

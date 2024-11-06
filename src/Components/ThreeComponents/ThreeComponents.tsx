@@ -23,25 +23,22 @@ function Drawing(props: DrawingSettings) {
 		useState<ShapeAndOwnPropsInterface | null>(null);
 	const { setShapesAndOwnPropsContainer, nameDrawingFigure, settings } = props;
 	const ref = useRef(null);
-	const { current: canvas } = ref;
-	const isObjectCreatedInRenderTree = canvas !== null;
+	
     useEffect(() => {
-        
-		console.log("useEffect run");
-        if (isObjectCreatedInRenderTree) {
-
+        const { current: canvas } = ref;
+		const isCanvasCreatedInDOM = canvas !== null;
+        if (isCanvasCreatedInDOM) {
 			const shapeWithProps = new Create3DShapeWithOwnProps(
 				canvas,
 				createGeometry({ type: nameDrawingFigure, settings })
 			);
 			setShapesAndOwnProps(shapeWithProps); //for current compoment
 			setShapesAndOwnPropsContainer((shapesWithPropsContainer) => {
-				console.log("change state function");
 				shapesWithPropsContainer.push(shapeWithProps);
 				return [...shapesWithPropsContainer];
 			});
 		}
-	}, [isObjectCreatedInRenderTree]);
+	}, []);
 	const setPropsForCanvas: {} | ShapeAndOwnPropsInterface =
 		shapeAndOwnProps !== null
 			? fullScreenControllerProps(shapeAndOwnProps)
