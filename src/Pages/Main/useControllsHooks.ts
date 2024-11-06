@@ -12,7 +12,6 @@ export default function useScrollAndAтimationControlls() {
 	const isShapesCreatedInContainer = !!shapesAndOwnPropsContainer.length;
 	useEffect(() => {
 		if (isShapesCreatedInContainer) {
-			console.log("run useeffect twice");
 			const { resize, scroll, toDrawElementWhenPageWasLoaded } =
 				createScrollController(shapesAndOwnPropsContainer);
 			const { runShapesAnimation, stopShapesAnimation } = createShapesAnimation(

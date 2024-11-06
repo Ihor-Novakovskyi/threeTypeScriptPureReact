@@ -19,8 +19,7 @@ export default function createElementForLoadPage({
 	closeLoadPage,
 }: ElementForLoadPageInterface) {
     document.body.style.overflow = "hidden";
-    
-	console.log('');
+
 	const typesGeometryElements = geometries.map(createGeometry);
 	const position = [
 		{ startAngle: Math.round(120 / 57.3) },
